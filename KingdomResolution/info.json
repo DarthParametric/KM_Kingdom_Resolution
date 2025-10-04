@@ -1,12 +1,12 @@
-{
-  "Id": "KingdomResolution",
-  "DisplayName": "Kingdom Resolution",
-  "Author": "spacehamster",
-  "Version": "1.7.2",
-  "ManagerVersion": "0.22.1",
-  "Requirements": [],
-  "AssemblyName": "KingdomResolution.dll",
-  "EntryMethod": "KingdomResolution.Main.Load",
-  "HomePage": "https://www.nexusmods.com/pathfinderkingmaker/mods/36",
-  "Repository": "https://raw.githubusercontent.com/spacehamster/KingmakerKingdomResolutionMod/master/KingdomResolution/Repository.json"
+﻿{
+    "Id": "KingdomResolution",
+    "DisplayName": "Kingdom Resolution",
+    "Author": "SpaceHamster",
+    "Version": "1.8.0",
+    "ManagerVersion": "0.27.10",
+    "Requirements": [],
+    "AssemblyName": "KingdomResolution.dll",
+    "EntryMethod": "KingdomResolution.Main.Load",
+    "Repository": "https://raw.githubusercontent.com/DarthParametric/KM_Kingdom_Resolution/master/KingdomResolution/Repository.json",
+    "HomePage": "https://github.com/DarthParametric/KM_Kingdom_Resolution"
 }
