@@ -11,7 +11,7 @@ public class Labels
     public static string EventPriceFactorLabel = "Event BP Price Factor";
     public static string EventPriceFactorTooltip = "Adjust the BP price of kingdom projects and events from 0% (free) to 100% (full price)";
     public static string EasyEventsLabel = "Enable Easy Events";
-    public static string EasyEventsTooltip = "Reduce the DC of kingdom events to -100 resulting in trimumph event results";
+    public static string EasyEventsTooltip = "Reduce the DC of kingdom events by up to 100% (default 50%), increasing the likelihood of trimumph results";
     public static string AlwaysManageKingdomLabel = "Enable Manage Kingdom Everywhere";
     public static string AlwaysManageKingdomTooltip = "Allows the Kingdom Management screen to be accessed even while in unclaimed regions.";
     public static string AlwaysAdvanceTimeLabel = "Enable Skip Day/Claim Region Everywhere";
@@ -53,5 +53,5 @@ public class Labels
     public static string DisableMercenaryPenaltyTooltip = "Removes the -4 penalty mercenary advisors recieve";
 
     public static string KingdomEventDCModLabel = "Event DC Adjustment";
-    public static string KingdomEventDCModTooltip = "Scales the vanilla DC of kingdom events by the supplied value. Default value is 50%";
+    public static string KingdomEventDCModTooltip = "Scales the vanilla DC of kingdom events by the supplied value. Default value is 50%. Requires 'Enable Easy Events' to be enabled.";
 }

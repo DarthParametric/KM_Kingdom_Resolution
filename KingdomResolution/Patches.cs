@@ -27,7 +27,11 @@ class Patches
                 }
                 else
                 {
-                    __result = Mathf.RoundToInt(__result * settings.baronTimeFactor);
+					int SkipTimeAmt = Mathf.RoundToInt(__result * settings.baronTimeFactor);
+
+					LogDebug($"KingdomTaskEvent_SkipPlayerTime_Patch: Scaled ruler time spent event, ruler time factor = {settings.baronTimeFactor * 100}%, scaled result = {SkipTimeAmt}");
+
+					__result = SkipTimeAmt;
                     __result = __result < 1 ? 1 : __result;
                 }
             }
@@ -50,20 +54,36 @@ class Patches
             {
                 if (!enabled) return;
                 if (__instance.EventBlueprint.IsResolveByBaron) return;
-                if (__instance.EventBlueprint is BlueprintKingdomEvent)
+
+				if (__instance.EventBlueprint is BlueprintKingdomEvent)
                 {
-                    __result = Mathf.RoundToInt(__result * settings.eventTimeFactor);
+					int EventTimeScaled = Mathf.RoundToInt(__result * settings.eventTimeFactor);
+
+					LogDebug($"KingdomEvent_CalculateResolutionTime_Patch: Kingdom event, event time factor = {settings.eventTimeFactor * 100}%, scaled result = {EventTimeScaled}.");
+
+					__result = EventTimeScaled;
                     __result = __result < 1 ? 1 : __result;
                 }
-                var projectBlueprint = __instance.EventBlueprint as BlueprintKingdomProject;
-                if (projectBlueprint != null && projectBlueprint.SpendRulerTimeDays > 0)
+
+				var projectBlueprint = __instance.EventBlueprint as BlueprintKingdomProject;
+
+				if (projectBlueprint != null && projectBlueprint.SpendRulerTimeDays > 0)
                 {
-                    __result = Mathf.RoundToInt(__result * settings.baronTimeFactor);
+					int BaronTimeScaled = Mathf.RoundToInt(__result * settings.baronTimeFactor);
+
+					LogDebug($"KingdomEvent_CalculateResolutionTime_Patch: Ruler-managed project, ruler-managed time factor = {settings.baronTimeFactor * 100}%, scaled result = {BaronTimeScaled}.");
+
+					__result = BaronTimeScaled;
                     __result = __result < 1 ? 1 : __result;
                 }
-                if (projectBlueprint != null && projectBlueprint.SpendRulerTimeDays <= 0)
+
+				if (projectBlueprint != null && projectBlueprint.SpendRulerTimeDays <= 0)
                 {
-                    __result = Mathf.RoundToInt(__result * settings.projectTimeFactor);
+					int ProjectTimeScaled = Mathf.RoundToInt(__result * settings.projectTimeFactor);
+
+					LogDebug($"KingdomEvent_CalculateResolutionTime_Patch: Non-ruler-managed project, project time factor = {settings.projectTimeFactor * 100}%, scaled result = {ProjectTimeScaled}.");
+
+					__result = ProjectTimeScaled;
                     __result = __result < 1 ? 1 : __result;
                 }
             }
@@ -81,7 +101,12 @@ class Patches
             try
             {
                 if (!enabled) return;
-                __result = Mathf.RoundToInt(__result * settings.eventPriceFactor);
+
+				int EventBPPrice = Mathf.RoundToInt(__result * settings.eventPriceFactor);
+
+				LogDebug($"KingdomEvent_CalculateBPCost_Patch: Scaled event price factor = {settings.eventPriceFactor * 100}%, scaled result = {EventBPPrice}");
+
+				__result = EventBPPrice;
             }
             catch (Exception ex)
             {
@@ -99,7 +124,11 @@ class Patches
                 if (!enabled) return;
                 if (!settings.easyEvents) return;
 
-                __result = Mathf.RoundToInt(__result * settings.eventDCFactor);
+				int ScaledDC = Mathf.RoundToInt(__result * settings.eventDCFactor);
+
+				LogDebug($"KingdomTaskEvent_GetDC_Patch: Scaled event DC factor = {settings.eventDCFactor * 100}%, final result = {ScaledDC}.");
+
+				__result = ScaledDC;
             }
             catch (Exception ex)
             {
